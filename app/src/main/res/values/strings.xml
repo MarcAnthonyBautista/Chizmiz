@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Chizmiz</string>
+    <string name="title_activity_sign_in">SignInActivity</string>
+    <!--
+    This string is used for square devices and overridden by hello_world in
+    values-round/strings.xml for round devices.
+    -->
+    <string name="hello_world">Hello Square World!</string>
+    <string name="warning_invalid_email">Invalid Email Address</string>
+    <string name="warning_invalid_password">Invalid Password</string>
+    <string name="label_select_photo">select photo</string>
+    <string name="hint_username">Username</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+    <string name="label_signin">Sign in</string>
+    <string name="label_register">Register</string>
+    <string name="label_edit">Edit</string>
+    <string name="toast_no_image_selected">No Image was selected</string>
+    <string name="label_title">Title</string>
+    <string name="label_skip">Skip</string>
+    <string name="actionbar_select_user">Select user</string>
+    <string name="actionbar_chatlog">Chat Log</string>
+</resources>
