@@ -12,31 +12,18 @@
         android:layout_height="match_parent"
         tools:context=".ui.MainActivity">
 
-        <ImageView
-            android:id="@+id/btn_profile"
-            android:layout_width="49dp"
-            android:layout_height="39dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:visibility="gone"
-            android:src="@color/colorPrimary"/>
 
-        <TextView
-            android:id="@+id/tv_display_username"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:text="Name"
-            android:layout_marginRight="20dp"
-            android:layout_marginLeft="10dp"
-            android:gravity="center|left"
-            app:layout_constraintBottom_toBottomOf="@+id/btn_profile"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recent_message_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:visibility="gone"
-            app:layout_constraintHorizontal_bias="0.507"
-            app:layout_constraintStart_toEndOf="@+id/btn_profile"
-            app:layout_constraintTop_toTopOf="@+id/btn_profile" />
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintStart_toStartOf="parent"
+            android:padding="10dp"
+            android:clipToPadding="false"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

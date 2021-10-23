@@ -6,6 +6,7 @@ import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.DividerItemDecoration
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.squareup.picasso.Picasso
@@ -16,6 +17,8 @@ import marc.firebase.chizmiz.R
 import marc.firebase.chizmiz.databinding.ActivityChatLogBinding
 import marc.firebase.chizmiz.ui.model.ChatMessage
 import marc.firebase.chizmiz.ui.model.User
+import marc.firebase.chizmiz.ui.view.ChatFromItem
+import marc.firebase.chizmiz.ui.view.ChatMeItem
 
 class ChatLog : AppCompatActivity() {
     private lateinit var binding : ActivityChatLogBinding
@@ -37,6 +40,7 @@ class ChatLog : AppCompatActivity() {
             }
 
             chatlogRecycler.adapter = adapter
+
         }
         listenForMessage()
     }
@@ -54,6 +58,7 @@ class ChatLog : AppCompatActivity() {
                    }else {
                        adapter.add(ChatFromItem(chatMessage.text,toUser!!))
                    }
+                   binding.chatlogRecycler.scrollToPosition(adapter.itemCount -1 )
                 }
             }
             override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
@@ -69,7 +74,7 @@ class ChatLog : AppCompatActivity() {
     }
 
     private fun performSendMessage(){
-        //val ref = FirebaseDatabase.getInstance().getReference("/message").push()
+
         val fromId = FirebaseAuth.getInstance().uid
         val toId = intent.getParcelableExtra<User>(NewMessageActivity.KEY)?.uid
         if(fromId==null)return
@@ -85,30 +90,20 @@ class ChatLog : AppCompatActivity() {
                 binding.chatlogInput.text.clear()
                 binding.chatlogRecycler.scrollToPosition(adapter.itemCount-1)
             }
+
+        val recentMsgRefMe = FirebaseDatabase.getInstance().getReference("/recent-message/$fromId/$toId")
+        recentMsgRefMe.setValue(chatText)
+
+        val recentMsgRefFrom = FirebaseDatabase.getInstance().getReference("/recent-message/$toId/$fromId")
+        recentMsgRefFrom.setValue(chatText)
+
+
+
+
         mirrorRef.setValue(chatText)
 
     }
 
-    class ChatFromItem(val text:String,val user:User): Item<GroupieViewHolder>(){
-        override fun bind(viewHolder: GroupieViewHolder, p1: Int) {
-                viewHolder.itemView.findViewById<TextView>(R.id.from_text).text = text
-                Picasso.get().load(user.profileImageUrl).into(viewHolder.itemView.findViewById<ImageView>(R.id.from_user_photo))
-        }
 
-        override fun getLayout(): Int {
-            return R.layout.chatlog_from_item
-        }
-    }
-    class ChatMeItem(val text:String,val user:User): Item<GroupieViewHolder>(){
-        override fun bind(viewHolder: GroupieViewHolder, p1: Int) {
-                viewHolder.itemView.findViewById<TextView>(R.id.me_text).text = text
-            Picasso.get().load(user.profileImageUrl).into(viewHolder.itemView.findViewById<ImageView>(R.id.me_user_photo))
-        }
-
-        override fun getLayout(): Int {
-            return R.layout.chatlog_me_item
-        }
-
-    }
 
 }
