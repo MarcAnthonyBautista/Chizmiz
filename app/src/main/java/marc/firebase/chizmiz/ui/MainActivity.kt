@@ -1,22 +1,30 @@
 package marc.firebase.chizmiz.ui
 
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig
+import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings
 import com.squareup.picasso.Picasso
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
 import com.xwray.groupie.Item
 import marc.firebase.chizmiz.R
+import marc.firebase.chizmiz.RemoteUtil
 import marc.firebase.chizmiz.databinding.ActivityMainBinding
 import marc.firebase.chizmiz.ui.model.ChatMessage
 import marc.firebase.chizmiz.ui.model.User
@@ -26,6 +34,7 @@ import marc.firebase.chizmiz.ui.view.LatestMessageRow
 class MainActivity : AppCompatActivity() {
     private lateinit var binding : ActivityMainBinding
     private lateinit var user_uid : String
+    private lateinit var fireabseConfig : FirebaseRemoteConfig
 
     companion object{
         var currentUser: User? = null
@@ -47,6 +56,9 @@ class MainActivity : AppCompatActivity() {
             fetchCurrentUser()
 
         }
+
+
+        updateChecker()
 
         binding.apply {
             recentMessageRecycler.adapter = adapter
@@ -146,6 +158,53 @@ class MainActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
+    private fun updateChecker(){
+        val map:HashMap<String,Int> = HashMap()
+        map.put(RemoteUtil.VERSION, BuildConfig.VERSION_CODE)
 
+        fireabseConfig = FirebaseRemoteConfig.getInstance()
+        var configSettings = FirebaseRemoteConfigSettings.Builder()
+            .setMinimumFetchIntervalInSeconds(1)
+            .build()
+        fireabseConfig.setConfigSettingsAsync(configSettings)
+
+        fireabseConfig.setDefaultsAsync(map.toMap())
+        fireabseConfig.fetchAndActivate()
+            .addOnCompleteListener{
+                if(it.isSuccessful){
+                    Log.d("myTag","remoteConfig: \n ${fireabseConfig.getString(RemoteUtil.TITLE)} \n ${fireabseConfig.getString(
+                        RemoteUtil.WHATSNEW)} \n ${fireabseConfig.getString(RemoteUtil.ISFORCE)} \n ${fireabseConfig.getString(
+                        RemoteUtil.VERSION)}")
+
+                    showDialog(fireabseConfig.getString(RemoteUtil.TITLE),fireabseConfig.getString(
+                        RemoteUtil.WHATSNEW),fireabseConfig.getLong(RemoteUtil.VERSION),fireabseConfig.getBoolean(
+                        RemoteUtil.ISFORCE))
+                }
+            }
+    }
+
+    private fun showDialog(title:String,body:String,version:Long,is_force:Boolean){
+        if(version<=BuildConfig.VERSION_CODE)return
+
+        val mDialogView = LayoutInflater.from(this).inflate(R.layout.custom_dialog,null)
+        val mBuilder = AlertDialog.Builder(this)
+            .setView(mDialogView)
+        val mAlertDialog = mBuilder.show()
+        mAlertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        mAlertDialog.setCancelable(false)
+
+        mDialogView.findViewById<TextView>(R.id.dialog_title).text = title
+        mDialogView.findViewById<TextView>(R.id.dialog_body).text = body
+        if(!is_force){
+            mDialogView.findViewById<TextView>(R.id.dialog_negative).apply {
+                visibility = View.VISIBLE
+                setOnClickListener {
+                    mAlertDialog.dismiss()
+                }
+            }
+        }else{
+            mDialogView.findViewById<TextView>(R.id.dialog_negative).visibility = View.GONE
+        }
+    }
 
 }

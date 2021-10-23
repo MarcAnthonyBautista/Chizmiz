@@ -26,7 +26,6 @@ import marc.firebase.chizmiz.databinding.ActivityLoginBinding
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding : ActivityLoginBinding
     private lateinit var progress: ProgressBar
-    private lateinit var fireabseConfig : FirebaseRemoteConfig
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,33 +43,9 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
         }
-        updateChecker()
 
     }
-    private fun updateChecker(){
-        val map:HashMap<String,Int> = HashMap()
-        map.put(RemoteUtil.VERSION, BuildConfig.VERSION_CODE)
 
-        fireabseConfig = FirebaseRemoteConfig.getInstance()
-        var configSettings = FirebaseRemoteConfigSettings.Builder()
-            .setMinimumFetchIntervalInSeconds(1)
-            .build()
-        fireabseConfig.setConfigSettingsAsync(configSettings)
-
-        fireabseConfig.setDefaultsAsync(map.toMap())
-        fireabseConfig.fetchAndActivate()
-            .addOnCompleteListener{
-                if(it.isSuccessful){
-                    Log.d("myTag","remoteConfig: \n ${fireabseConfig.getString(RemoteUtil.TITLE)} \n ${fireabseConfig.getString(
-                        RemoteUtil.WHATSNEW)} \n ${fireabseConfig.getString(RemoteUtil.ISFORCE)} \n ${fireabseConfig.getString(
-                        RemoteUtil.VERSION)}")
-
-                    showDialog(fireabseConfig.getString(RemoteUtil.TITLE),fireabseConfig.getString(
-                        RemoteUtil.WHATSNEW),fireabseConfig.getLong(RemoteUtil.VERSION),fireabseConfig.getBoolean(
-                        RemoteUtil.ISFORCE))
-                }
-            }
-    }
     private fun parseEmail(tv: TextView):Boolean{
         var emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
         return if(tv.text.toString().trim { it <= ' ' }.matches(emailPattern.toRegex())){
@@ -123,27 +98,5 @@ class LoginActivity : AppCompatActivity() {
         progress.visibility= View.GONE
     }
 
-    private fun showDialog(title:String,body:String,version:Long,is_force:Boolean){
-        if(version<=BuildConfig.VERSION_CODE)return
 
-        val mDialogView = LayoutInflater.from(this).inflate(R.layout.custom_dialog,null)
-        val mBuilder = AlertDialog.Builder(this)
-            .setView(mDialogView)
-        val mAlertDialog = mBuilder.show()
-        mAlertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        mAlertDialog.setCancelable(false)
-
-        mDialogView.findViewById<TextView>(R.id.dialog_title).text = title
-        mDialogView.findViewById<TextView>(R.id.dialog_body).text = body
-        if(!is_force){
-            mDialogView.findViewById<TextView>(R.id.dialog_negative).apply {
-                visibility = View.VISIBLE
-                setOnClickListener {
-                    mAlertDialog.dismiss()
-                }
-            }
-        }else{
-            mDialogView.findViewById<TextView>(R.id.dialog_negative).visibility = View.GONE
-        }
-    }
 }
