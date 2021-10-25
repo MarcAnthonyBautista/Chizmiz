@@ -12,10 +12,15 @@ import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.analytics.ktx.logEvent
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
+import marc.firebase.chizmiz.ParseUtil
 import marc.firebase.chizmiz.R
 import marc.firebase.chizmiz.databinding.ActivityRegisterBinding
 import marc.firebase.chizmiz.ui.model.User
@@ -30,6 +35,7 @@ class RegisterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding= DataBindingUtil.setContentView(this, R.layout.activity_register)
+        val parseUtil = ParseUtil()
         binding.apply {
             progress=progressBar
             selectPhotoLabelShow()
@@ -37,10 +43,14 @@ class RegisterActivity : AppCompatActivity() {
               onBackPressed()
             }
             btnRegister.setOnClickListener {
-                if (parseEmail(tvEmail) && parsePassword(tvPassword)){
-                    val email = tvEmail.text.toString().trim()
-                    val password = tvPassword.text.toString().trim()
-                    registerUser(email, password)
+                if(parseUtil.parseProfilePhoto(profileSelect)) {
+                    if (parseUtil.parseUsername(tvUsername) && parseUtil.parseEmail(tvEmail) && parseUtil.parsePassword(tvPassword)) {
+                        val email = tvEmail.text.toString().trim()
+                        val password = tvPassword.text.toString().trim()
+                        registerUser(email, password)
+                    }
+                }else{
+                    Toast.makeText(this@RegisterActivity,"Select profile photo.",Toast.LENGTH_SHORT).show()
                 }
             }
             profileSelect.setOnClickListener {
@@ -81,7 +91,10 @@ class RegisterActivity : AppCompatActivity() {
                         "Successful registration!!!",
                         Toast.LENGTH_SHORT
                     ).show()
-
+                    val firebaseAnalytics = Firebase.analytics
+                    firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SIGN_UP) {
+                        param("email",email)
+                    }
                     uploadSelectedProfilePic()
                 }else{
                     loaded()

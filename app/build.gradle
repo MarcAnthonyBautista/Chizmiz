@@ -38,6 +38,9 @@ android {
     buildFeatures{
         dataBinding = true
     }
+    aaptOptions {
+        noCompress "tflite"
+    }
 }
 
 dependencies {
@@ -63,6 +66,9 @@ dependencies {
     //Firebase Config
     implementation 'com.google.firebase:firebase-config-ktx'
 
+    //Firebase Analytics
+    implementation 'com.google.firebase:firebase-analytics-ktx'
+
     //Coroutines
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2'
 
@@ -71,4 +77,6 @@ dependencies {
     implementation "com.github.lisawray.groupie:groupie-databinding:$groupie_version"
     //Picasso
     implementation 'com.squareup.picasso:picasso:2.8'
+    //Firebase ML smart reply
+    implementation 'com.google.mlkit:smart-reply:16.2.0'
 }

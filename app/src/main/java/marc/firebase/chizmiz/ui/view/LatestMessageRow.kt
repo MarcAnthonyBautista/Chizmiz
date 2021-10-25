@@ -13,6 +13,8 @@ import com.xwray.groupie.Item
 import marc.firebase.chizmiz.R
 import marc.firebase.chizmiz.ui.model.ChatMessage
 import marc.firebase.chizmiz.ui.model.User
+import java.text.SimpleDateFormat
+import java.util.*
 
 class LatestMessageRow(val chatMessage: ChatMessage): Item<GroupieViewHolder>(){
 
@@ -29,15 +31,20 @@ class LatestMessageRow(val chatMessage: ChatMessage): Item<GroupieViewHolder>(){
 
         ref.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                chatPartner = snapshot.getValue(User::class.java)?:return
+                chatPartner = snapshot.getValue(User::class.java) ?: return
                 viewHolder.itemView.findViewById<TextView>(R.id.recent_message_name).text = chatPartner?.username
                 Picasso.get().load(chatPartner?.profileImageUrl).into(viewHolder.itemView.findViewById<ImageView>(
-                    R.id.recent_message_profile))
+                        R.id.recent_message_profile))
             }
+
             override fun onCancelled(error: DatabaseError) {
             }
         })
         viewHolder.itemView.findViewById<TextView>(R.id.recent_message_item_text).text = chatMessage.text
+
+        val sdf = SimpleDateFormat("dd/MM hh:mm")
+        val date = sdf.format(chatMessage.timestamp*1000)
+        viewHolder.itemView.findViewById<TextView>(R.id.recent_message_timestamp).text = date
     }
     override fun getLayout(): Int {
         return R.layout.recent_message_item

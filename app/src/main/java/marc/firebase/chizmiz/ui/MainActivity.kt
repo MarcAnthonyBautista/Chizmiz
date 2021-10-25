@@ -54,7 +54,7 @@ class MainActivity : AppCompatActivity() {
         }else{
             user_uid=uid
             fetchCurrentUser()
-
+            listenForLatestMessages()
         }
 
 
@@ -74,7 +74,7 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-        listenForLatestMessages()
+
 
     }
     val adapter = GroupAdapter<GroupieViewHolder>()

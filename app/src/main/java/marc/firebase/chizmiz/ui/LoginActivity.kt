@@ -14,11 +14,16 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.analytics.ktx.logEvent
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.BuildConfig
+import com.google.firebase.ktx.Firebase
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings
+import marc.firebase.chizmiz.ParseUtil
 import marc.firebase.chizmiz.R
 import marc.firebase.chizmiz.RemoteUtil
 import marc.firebase.chizmiz.databinding.ActivityLoginBinding
@@ -30,13 +35,14 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding =  DataBindingUtil.setContentView(this, R.layout.activity_login)
+        val parseUtil = ParseUtil()
         binding.apply {
             progress=progressBar
             tvRegister.setOnClickListener {
                 startActivity(Intent(this@LoginActivity, RegisterActivity::class.java))
             }
             btnSignin.setOnClickListener {
-                if (parseEmail(tvEmail) && parsePassword(tvPassword)){
+                if (parseUtil.parseEmail(tvEmail) && parseUtil.parsePassword(tvPassword)){
                     val email = tvEmail.text.toString().trim()
                     val password = tvPassword.text.toString().trim()
                     signInUser(email,password)
@@ -46,25 +52,7 @@ class LoginActivity : AppCompatActivity() {
 
     }
 
-    private fun parseEmail(tv: TextView):Boolean{
-        var emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
-        return if(tv.text.toString().trim { it <= ' ' }.matches(emailPattern.toRegex())){
-            true
-        }else{
-            tv.error = "Invalid Email format"
-            false
-        }
 
-    }
-    private fun parsePassword(tv: TextView):Boolean{
-        return if(tv.text.toString().trim().length>=6){
-            true
-
-        }else{
-            tv.error = "Invalid Password"
-            false
-        }
-    }
     private fun signInUser(email:String,password:String){
         load()
         FirebaseAuth.getInstance().signInWithEmailAndPassword(email,password)
@@ -77,7 +65,10 @@ class LoginActivity : AppCompatActivity() {
                         "You are logged in successfully",
                         Toast.LENGTH_SHORT
                     ).show()
-
+                    val firebaseAnalytics = Firebase.analytics
+                    firebaseAnalytics.logEvent(FirebaseAnalytics.Event.LOGIN) {
+                        param("email",email)
+                    }
                     startActivity(Intent(this@LoginActivity, MainActivity::class.java)
                         .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
                         .putExtra("user_id",firebaseUser.uid)

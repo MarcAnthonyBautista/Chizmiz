@@ -1,45 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:clipToPadding="false"
-    style="@style/chat_text_container_all"
-    android:layout_height="wrap_content">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:elevation="20dp"
-        app:cardCornerRadius="18dp"
-        app:layout_constraintStart_toEndOf="@+id/cardView3"
-        app:layout_constraintTop_toTopOf="parent">
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:clipToPadding="false"
+        style="@style/chat_text_container_all"
+        android:layout_height="wrap_content">
 
         <TextView
-            style="@style/chat_text_style_from"
-            android:id="@+id/from_text"
+            android:id="@+id/chatlog_timestamp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:maxWidth="270dp"
-            android:text="You can simply set a custom view to your actionbar. So simply put your imageview there: final ActionBar actionBar = getSupportActionBar();" />
-    </androidx.cardview.widget.CardView>
+            android:text="-"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="@+id/cardView2"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/cardView2"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView3"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        app:cardCornerRadius="20dp"
-        android:clipToPadding="false"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/from_user_photo"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/main_logo" />
-    </androidx.cardview.widget.CardView>
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="3dp"
+            android:elevation="20dp"
+            app:cardCornerRadius="18dp"
+            app:layout_constraintStart_toEndOf="@+id/cardView3"
+            app:layout_constraintTop_toBottomOf="@+id/chatlog_timestamp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/from_text"
+                style="@style/chat_text_style_from"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxWidth="270dp"
+                android:text="You can simply set a custom view to your actionbar. So simply put your imageview there: final ActionBar actionBar = getSupportActionBar();" />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView3"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            app:cardCornerRadius="20dp"
+            android:clipToPadding="false"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/from_user_photo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/main_logo" />
+        </androidx.cardview.widget.CardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
