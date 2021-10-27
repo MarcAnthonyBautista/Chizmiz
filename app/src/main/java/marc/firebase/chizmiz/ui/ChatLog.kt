@@ -43,15 +43,17 @@ class ChatLog : AppCompatActivity() {
            //setupDummyData()
             chatlogSendButton.setOnClickListener{
                 if(chatlogInput.text.isNotEmpty()) {
+                    binding.recyclerSuggest.visibility = View.GONE
                     performSendMessage()
                 }
             }
 
             chatlogRecycler.adapter = adapter
 
+
         }
+
         listenForMessage()
-//TODO show timestamp on item click 
         adapter.setOnItemClickListener{ item,view ->
             if(view.findViewById<TextView>(R.id.chatlog_timestamp).visibility==View.VISIBLE) {
                 view.findViewById<TextView>(R.id.chatlog_timestamp).visibility=View.GONE
@@ -75,12 +77,16 @@ class ChatLog : AppCompatActivity() {
                        adapter.add(ChatMeItem(chatMessage.timestamp,chatMessage.text, currentUser))
                    }else {
                        adapter.add(ChatFromItem(chatMessage.timestamp,chatMessage.text,toUser!!))
+                       if (toId != null) {
+                           addToSmartConversationFromPartner(chatMessage.text,toId)
+                       }
+                       generateSmartReply()
                    }
                    binding.chatlogRecycler.scrollToPosition(adapter.itemCount -1 )
+                    binding.chatlogRecycler
 
-                    if(toId==null)return
-                    addToSmartConversationFromPartner(chatMessage.text,toId)
-                    generateSmartReply()
+
+
                 }
             }
             override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
