@@ -98,7 +98,9 @@ class RegisterActivity : AppCompatActivity() {
                         param("email",email)
                     }
                     //Topics
-                    subscribeToTopic()
+                    if(binding.switchTopic.isChecked){
+                        subscribeToTopic()
+                    }
 
                     uploadSelectedProfilePic()
                 }else{
