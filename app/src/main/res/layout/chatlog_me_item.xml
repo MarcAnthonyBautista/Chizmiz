@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:clipToPadding="false"
+    style="@style/chat_text_container_all"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/chatlog_timestamp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="-"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="@+id/cardView2"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/cardView2"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView2"
+        style="@style/chat_text_container_me"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:elevation="20dp"
+        app:cardCornerRadius="18dp"
+        app:layout_constraintEnd_toStartOf="@+id/cardView3"
+        app:layout_constraintTop_toBottomOf="@+id/chatlog_timestamp">
+
+        <TextView
+            android:id="@+id/me_text"
+            style="@style/chat_text_style_me"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et " />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView3"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        app:cardCornerRadius="20dp"
+        android:clipToPadding="false"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" >
+
+        <ImageView
+            android:id="@+id/me_user_photo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/main_logo" />
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
