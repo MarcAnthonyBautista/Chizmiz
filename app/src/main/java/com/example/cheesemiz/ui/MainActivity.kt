@@ -83,6 +83,7 @@ class MainActivity : AppCompatActivity() {
             adapter.add(LatestMessageRow(it))
         }
         //for display purpose only
+        //if null
         if(latestMessageMap.isNullOrEmpty()){
             binding.lonelyText.visibility = View.VISIBLE
             binding.arrow.visibility = View.VISIBLE
