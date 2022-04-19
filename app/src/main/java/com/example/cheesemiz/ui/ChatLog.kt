@@ -46,7 +46,7 @@ class ChatLog : AppCompatActivity() {
                     binding.recyclerSuggest.visibility = View.GONE
                 }
             })
-            //SEND BUTTONs
+            //SEND BUTTONssss
             chatlogSendButton.setOnClickListener{
                 if(chatlogInput.text.isNotEmpty()) {
                     binding.recyclerSuggest.visibility = View.GONE
