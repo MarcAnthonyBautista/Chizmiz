@@ -24,8 +24,10 @@ import com.example.cheesemiz.ParseUtil
 import marc.firebase.chizmiz.R
 import marc.firebase.chizmiz.databinding.ActivityRegisterBinding
 import com.example.cheesemiz.ui.model.User
+import com.google.firebase.installations.FirebaseInstallations
 import com.google.firebase.messaging.ktx.messaging
 import java.lang.Exception
+import java.nio.file.Files.delete
 import java.util.*
 
 
@@ -58,7 +60,7 @@ class RegisterActivity : AppCompatActivity() {
                 selectPicture()
             }
         }
-
+        FirebaseInstallations.getInstance().delete()
     }
     private fun parseEmail(tv: TextView):Boolean{
         var emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
@@ -96,6 +98,7 @@ class RegisterActivity : AppCompatActivity() {
                     val firebaseAnalytics = Firebase.analytics
                     firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SIGN_UP) {
                         param("email",email)
+                        
                     }
                     //Topics
                     if(binding.switchTopic.isChecked){

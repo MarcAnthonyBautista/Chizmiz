@@ -23,4 +23,6 @@
     <string name="subcriptionTopicFailed">Subscription to topic failed</string>
     <string name="subcriptionTopicSuccess">Subscription to topic successful</string>
     <string name="lonely_msg">Its lonely here :(\n\nClick on the action menu to start connecting to online friends.</string>
+    <string name="aa_hint">Aa</string>
+    <string name="title_ko">TItle ko</string>
 </resources>

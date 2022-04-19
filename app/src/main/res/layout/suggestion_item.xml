@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:text="TextView"
         android:textSize="15dp"
-        android:textColor="@color/less_orange"
+        android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

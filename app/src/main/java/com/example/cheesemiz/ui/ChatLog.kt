@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.View.OnFocusChangeListener
 import android.widget.TextView
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
@@ -36,6 +38,15 @@ class ChatLog : AppCompatActivity() {
 
         binding.apply {
            //setupDummyData()
+
+            //CHAT INPUT BUTTON
+            chatlogInput.setOnFocusChangeListener(OnFocusChangeListener { v, hasFocus ->
+                if (hasFocus) {
+                   // hideKeyboard(v)
+                    binding.recyclerSuggest.visibility = View.GONE
+                }
+            })
+            //SEND BUTTON
             chatlogSendButton.setOnClickListener{
                 if(chatlogInput.text.isNotEmpty()) {
                     binding.recyclerSuggest.visibility = View.GONE
@@ -77,10 +88,8 @@ class ChatLog : AppCompatActivity() {
                        }
                        generateSmartReply()
                    }
-                   binding.chatlogRecycler.scrollToPosition(adapter.itemCount -1 )
+                    binding.chatlogRecycler.scrollToPosition(adapter.itemCount-1)
                     binding.chatlogRecycler
-
-
 
                 }
             }

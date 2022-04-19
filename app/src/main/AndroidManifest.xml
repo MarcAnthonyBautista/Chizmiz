@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="marc.firebase.chizmiz">
+    package="marc.firebase.chizmiz">com.example.cheesemiz
 
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -12,9 +12,11 @@
         android:roundIcon="@drawable/icon_chizmiz"
         android:supportsRtl="true"
         android:theme="@style/Theme.Chizmiz">
-      <!--  <meta-data
+       <!-- <meta-data android:name="google_analytics_automatic_screen_reporting_enabled" android:value="true" />-->
+       <!-- <meta-data android:name="firebase_analytics_collection_enabled" android:value="false" />-->
+        <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
-            android:resource="@drawable/notification_logo" />-->
+            android:resource="@drawable/chizmiz_local_notif_icon" />
 <!--        <meta-data android:name="com.google.firebase.messaging.default_notification_color"
             android:resource="@color/google_blue" />-->
         <activity android:name="com.example.cheesemiz.ui.ChatLog"
@@ -30,7 +32,8 @@
         </activity>
         <activity android:name="com.example.cheesemiz.ui.RegisterActivity" />
         <activity android:name="com.example.cheesemiz.ui.LoginActivity" />
-        <activity android:name="com.example.cheesemiz.ui.MainActivity">
+        <activity android:name="com.example.cheesemiz.ui.MainActivity"
+            android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
