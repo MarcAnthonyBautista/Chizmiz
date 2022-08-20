@@ -103,7 +103,7 @@ class LoginActivity : AppCompatActivity() {
                     ).show()
 
                     val firebaseAnalytics = Firebase.analytics
-                    firebaseAnalytics.setUserProperty("x1",email)
+                    firebaseAnalytics.setUserProperty("user_email",email)
                     firebaseAnalytics.logEvent(FirebaseAnalytics.Event.LOGIN) {
                         param("email",email)
                     }

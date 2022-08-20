@@ -25,13 +25,21 @@ import com.example.cheesemiz.RemoteUtil
 import marc.firebase.chizmiz.databinding.ActivityMainBinding
 import com.example.cheesemiz.ui.model.ChatMessage
 import com.example.cheesemiz.ui.model.User
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.analytics.ktx.logEvent
+import com.google.firebase.ktx.Firebase
 import marc.firebase.chizmiz.ui.view.LatestMessageRow
+import java.time.Instant
+import java.time.ZoneOffset
+import java.time.format.DateTimeFormatter
 
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding : ActivityMainBinding
     private lateinit var user_uid : String
     private lateinit var fireabseConfig : FirebaseRemoteConfig
+
 
     companion object{
         var currentUser: User? = null
@@ -68,6 +76,7 @@ class MainActivity : AppCompatActivity() {
             intent.putExtra(NewMessageActivity.KEY,  row.chatPartner)
             startActivity(intent)
         }
+
 
 
 
@@ -123,7 +132,10 @@ class MainActivity : AppCompatActivity() {
         ref.addListenerForSingleValueEvent(object:ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                currentUser = snapshot.getValue(User::class.java)
+                //this is the original function here
 //                fetchOnlineUserProfile()
+                //Log the timestamp where the app is active  - this is not the original function here.
+                logTime(currentUser?.username.toString())
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -209,6 +221,19 @@ class MainActivity : AppCompatActivity() {
             }
         }else{
             mDialogView.findViewById<TextView>(R.id.dialog_negative).visibility = View.GONE
+        }
+    }
+
+
+    private fun logTime(email: String){
+        //Analytics
+        val firebaseAnalytics = Firebase.analytics
+        firebaseAnalytics.logEvent("active_time") {
+            param("appIsActive_timestamp", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSSSSS")
+                .withZone(ZoneOffset.UTC)
+                .format(Instant.now()))
+            param("triggeredBy", email)
+
         }
     }
 
