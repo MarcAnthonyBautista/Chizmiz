@@ -20,6 +20,8 @@ import marc.firebase.chizmiz.R
 import marc.firebase.chizmiz.databinding.ActivityChatLogBinding
 import com.example.cheesemiz.ui.model.ChatMessage
 import com.example.cheesemiz.ui.model.User
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.messaging.FirebaseMessaging
 import marc.firebase.chizmiz.ui.view.ChatFromItem
 import marc.firebase.chizmiz.ui.view.ChatMeItem
 
@@ -68,7 +70,27 @@ class ChatLog : AppCompatActivity() {
             }
         }
 
+//        Get the token
+      /*  FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
+            if (!task.isSuccessful) {
+                Log.w("FCM", "Fetching FCM registration token failed", task.exception)
+                return@OnCompleteListener
+            }
+
+            // Get new FCM registration token
+            val token = task.result
+
+            // Log and toast
+            val msg = "token: $token"
+            Log.d("FCM", msg)
+            Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
+        })*/
+
+
+
     }
+
+
 
     private fun listenForMessage(){
         val fromId = FirebaseAuth.getInstance().uid

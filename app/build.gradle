@@ -4,6 +4,7 @@ plugins {
     id 'kotlin-kapt'
     id 'com.google.gms.google-services'
     id("kotlin-parcelize")
+    id 'com.google.firebase.crashlytics'
 }
 
 
@@ -62,19 +63,21 @@ dependencies {
     // Firebase UI
     implementation 'com.firebaseui:firebase-ui-auth:8.0.0'
     implementation 'com.firebaseui:firebase-ui-database:8.0.0'
+
+    //Firebase Analytics
+    implementation 'com.google.firebase:firebase-analytics-ktx'
+    //Firebase Crashlytics
+    implementation 'com.google.firebase:firebase-crashlytics'
+    //Firebase Cloud Messaging
+    implementation 'com.google.firebase:firebase-messaging-ktx'
+    //Firebase In-App Messaging
+    implementation 'com.google.firebase:firebase-inappmessaging-display-ktx'
+    //Firebase ML smart reply
+    implementation 'com.google.mlkit:smart-reply:16.2.0'
     //Firebase Storage
     implementation 'com.google.firebase:firebase-storage-ktx'
     //Firebase Config
     implementation 'com.google.firebase:firebase-config-ktx'
-
-    //Firebase Analytics
-    implementation 'com.google.firebase:firebase-analytics-ktx'
-
-    //Firebase Cloud Messaging
-    implementation 'com.google.firebase:firebase-messaging-ktx'
-
-    //Firebase In-App Messaging
-    implementation 'com.google.firebase:firebase-inappmessaging-display-ktx'
 
     //Coroutines
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2'
@@ -84,6 +87,5 @@ dependencies {
     implementation "com.github.lisawray.groupie:groupie-databinding:$groupie_version"
     //Picasso
     implementation 'com.squareup.picasso:picasso:2.8'
-    //Firebase ML smart reply
-    implementation 'com.google.mlkit:smart-reply:16.2.0'
+
 }

@@ -8,57 +8,12 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:849182651066:android:2fd5a8dfe83342b00a4883",
+        "mobilesdk_app_id": "1:849182651066:android:b0ea6d2b604a298e0a4883",
         "android_client_info": {
           "package_name": "com.example.cheesemiz"
         }
       },
       "oauth_client": [
-        {
-          "client_id": "849182651066-esct6bte8b3btc1he9e68vf8hog9ar69.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.cheesemiz",
-            "certificate_hash": "d891b8163dc0c3a08636853dbdcbfa4bba5e5d19"
-          }
-        },
-        {
-          "client_id": "849182651066-tc67v6ph1cagjegrfcc3vpep7030g25f.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyBX68jzwqJWozgh2D-LjjRCu_u7vZIZJkI"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "849182651066-tc67v6ph1cagjegrfcc3vpep7030g25f.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:849182651066:android:d107655008e052160a4883",
-        "android_client_info": {
-          "package_name": "marc.firebase.chizmiz"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "849182651066-l5cga9192a63ui3da4n2366qesi1gjs4.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "marc.firebase.chizmiz",
-            "certificate_hash": "36ddb2a58df28b22d978d14cd5de39ef7068e458"
-          }
-        },
         {
           "client_id": "849182651066-tc67v6ph1cagjegrfcc3vpep7030g25f.apps.googleusercontent.com",
           "client_type": 3

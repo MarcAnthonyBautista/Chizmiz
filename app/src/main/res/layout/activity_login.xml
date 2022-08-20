@@ -46,6 +46,7 @@
             app:layout_constraintTop_toBottomOf="@+id/tv_password" />
 
         <LinearLayout
+            android:id="@+id/linearLayout2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
@@ -66,10 +67,10 @@
                 android:id="@+id/tv_register"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="left"
                 android:layout_weight="1"
-                android:textColor="@color/colorPrimary"
-                android:text="@string/label_register" />
+                android:gravity="left"
+                android:text="@string/label_register"
+                android:textColor="@color/colorPrimary" />
         </LinearLayout>
 
         <EditText
@@ -96,5 +97,15 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.32999998" />
+
+        <Button
+            android:id="@+id/btn_testCrash"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Test Crash"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
