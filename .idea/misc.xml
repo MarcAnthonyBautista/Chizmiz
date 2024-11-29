@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
@@ -9,7 +8,7 @@
         <entry key="app/src/main/res/drawable/rounded_corner.xml" value="0.2453125" />
         <entry key="app/src/main/res/drawable/sample.xml" value="0.2453125" />
         <entry key="app/src/main/res/layout/activity_chat_log.xml" value="0.165" />
-        <entry key="app/src/main/res/layout/activity_login.xml" value="0.23020833333333332" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.375" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.375" />
         <entry key="app/src/main/res/layout/chatlog_from_item.xml" value="0.3446557971014493" />
@@ -17,10 +16,11 @@
         <entry key="app/src/main/res/layout/each_user_layout.xml" value="0.34791666666666665" />
         <entry key="app/src/main/res/layout/suggestion_item.xml" value="0.5" />
         <entry key="app/src/main/res/menu/nav_menu.xml" value="0.3484375" />
+        <entry key="app/src/main/res/xml/rc_login_default_values.xml" value="0.3541666666666667" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_17" default="true" project-jdk-name="jbr-17" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

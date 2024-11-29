@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<defaults>
+  <entry>
+    <key>thisIsTheEmptyString</key>
+    <value />
+  </entry>
+  <entry>
+    <key>kahitano</key>
+    <value>""</value>
+  </entry>
+  <entry>
+    <key>sample_param</key>
+    <value />
+  </entry>
+  <entry>
+    <key>audience_sample</key>
+    <value>default value</value>
+  </entry>
+  <entry>
+    <key>global_settings</key>
+    <value>json settings (global)</value>
+  </entry>
+  <entry>
+    <key>label_register</key>
+    <value>Register Now!</value>
+  </entry>
+  <entry>
+    <key>label_no_account</key>
+    <value>まだアカウントがありませんか?</value>
+  </entry>
+  <entry>
+    <key>label_sign_in</key>
+    <value>Sign in</value>
+  </entry>
+  <entry>
+    <key>countTextLocaleValue</key>
+    <value>Cubitos</value>
+  </entry>
+  <entry>
+    <key>lifeCountLocaleValue</key>
+    <value>Vida</value>
+  </entry>
+  <entry>
+    <key>info</key>
+    <value>App Update</value>
+  </entry>
+  <entry>
+    <key>whats</key>
+    <value>App version 3.0 includes: -Fix for the sign in button -Fix for the register button-Removes In-App purchases</value>
+  </entry>
+  <entry>
+    <key>version</key>
+    <value>-1</value>
+  </entry>
+  <entry>
+    <key>is_force</key>
+    <value>false</value>
+  </entry>
+</defaults>

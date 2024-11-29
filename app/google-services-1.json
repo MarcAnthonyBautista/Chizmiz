@@ -1,0 +1,206 @@
+{
+  "project_info": {
+    "project_number": "849182651066",
+    "firebase_url": "https://chizmiz-be5ca-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "chizmiz-be5ca",
+    "storage_bucket": "chizmiz-be5ca.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:849182651066:android:c8b9b53694bac6270a4883",
+        "android_client_info": {
+          "package_name": "com.example.cheesemiz"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "849182651066-tc67v6ph1cagjegrfcc3vpep7030g25f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBmu7ACyKs2qZyxSRyW302yin-qHxT19Hw"
+        },
+        {
+          "current_key": "AIzaSyBX68jzwqJWozgh2D-LjjRCu_u7vZIZJkI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "849182651066-tc67v6ph1cagjegrfcc3vpep7030g25f.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "849182651066-frhtmdmn7tljdhlkss1oj2437l69aar0.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.UnityTechnologies.com.unity.template-starter-kit"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:849182651066:android:cb782af0f54e49cb0a4883",
+        "android_client_info": {
+          "package_name": "com.google.firebase.quickstart.analytics"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "849182651066-tc67v6ph1cagjegrfcc3vpep7030g25f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBmu7ACyKs2qZyxSRyW302yin-qHxT19Hw"
+        },
+        {
+          "current_key": "AIzaSyBX68jzwqJWozgh2D-LjjRCu_u7vZIZJkI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "849182651066-tc67v6ph1cagjegrfcc3vpep7030g25f.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "849182651066-frhtmdmn7tljdhlkss1oj2437l69aar0.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.UnityTechnologies.com.unity.template-starter-kit"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:849182651066:android:0fe7935049824a890a4883",
+        "android_client_info": {
+          "package_name": "com.google.firebase.quickstart.analytics_quickstart"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "849182651066-tc67v6ph1cagjegrfcc3vpep7030g25f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBmu7ACyKs2qZyxSRyW302yin-qHxT19Hw"
+        },
+        {
+          "current_key": "AIzaSyBX68jzwqJWozgh2D-LjjRCu_u7vZIZJkI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "849182651066-tc67v6ph1cagjegrfcc3vpep7030g25f.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "849182651066-frhtmdmn7tljdhlkss1oj2437l69aar0.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.UnityTechnologies.com.unity.template-starter-kit"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:849182651066:android:ccf21cc6bea3eb8d0a4883",
+        "android_client_info": {
+          "package_name": "com.google.firebase.quickstart.analytics_quickstart_flutter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "849182651066-tc67v6ph1cagjegrfcc3vpep7030g25f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBmu7ACyKs2qZyxSRyW302yin-qHxT19Hw"
+        },
+        {
+          "current_key": "AIzaSyBX68jzwqJWozgh2D-LjjRCu_u7vZIZJkI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "849182651066-tc67v6ph1cagjegrfcc3vpep7030g25f.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "849182651066-frhtmdmn7tljdhlkss1oj2437l69aar0.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.UnityTechnologies.com.unity.template-starter-kit"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:849182651066:android:fc3ea3dce6b66f6b0a4883",
+        "android_client_info": {
+          "package_name": "com.google.firebase.quickstart.fcm"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "849182651066-tc67v6ph1cagjegrfcc3vpep7030g25f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBmu7ACyKs2qZyxSRyW302yin-qHxT19Hw"
+        },
+        {
+          "current_key": "AIzaSyBX68jzwqJWozgh2D-LjjRCu_u7vZIZJkI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "849182651066-tc67v6ph1cagjegrfcc3vpep7030g25f.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "849182651066-frhtmdmn7tljdhlkss1oj2437l69aar0.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.UnityTechnologies.com.unity.template-starter-kit"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

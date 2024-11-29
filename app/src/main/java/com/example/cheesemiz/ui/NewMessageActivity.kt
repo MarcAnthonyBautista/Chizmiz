@@ -15,8 +15,8 @@ import com.squareup.picasso.Picasso
 import com.xwray.groupie.GroupieViewHolder
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.Item
-import marc.firebase.chizmiz.R
-import marc.firebase.chizmiz.databinding.ActivityNewMessageBinding
+import com.example.cheesemiz.R
+import com.example.cheesemiz.databinding.ActivityNewMessageBinding
 import com.example.cheesemiz.ui.model.User
 
 class NewMessageActivity : AppCompatActivity() {

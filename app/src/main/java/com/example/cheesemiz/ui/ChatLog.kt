@@ -16,14 +16,14 @@ import com.google.mlkit.nl.smartreply.TextMessage
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
 import com.xwray.groupie.Item
-import marc.firebase.chizmiz.R
-import marc.firebase.chizmiz.databinding.ActivityChatLogBinding
+import com.example.cheesemiz.R
+import com.example.cheesemiz.databinding.ActivityChatLogBinding
 import com.example.cheesemiz.ui.model.ChatMessage
 import com.example.cheesemiz.ui.model.User
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.messaging.FirebaseMessaging
-import marc.firebase.chizmiz.ui.view.ChatFromItem
-import marc.firebase.chizmiz.ui.view.ChatMeItem
+import com.example.cheesemiz.ui.view.ChatFromItem
+import com.example.cheesemiz.ui.view.ChatMeItem
 
 class ChatLog : AppCompatActivity() {
     private lateinit var binding : ActivityChatLogBinding

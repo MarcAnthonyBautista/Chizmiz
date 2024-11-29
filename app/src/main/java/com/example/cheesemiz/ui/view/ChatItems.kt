@@ -1,11 +1,11 @@
-package marc.firebase.chizmiz.ui.view
+package com.example.cheesemiz.ui.view
 
 import android.widget.ImageView
 import android.widget.TextView
 import com.squareup.picasso.Picasso
 import com.xwray.groupie.GroupieViewHolder
 import com.xwray.groupie.Item
-import marc.firebase.chizmiz.R
+import com.example.cheesemiz.R
 import com.example.cheesemiz.ui.model.User
 import java.text.SimpleDateFormat
 

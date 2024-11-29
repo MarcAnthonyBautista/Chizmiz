@@ -21,11 +21,13 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.example.cheesemiz.ParseUtil
-import marc.firebase.chizmiz.R
-import marc.firebase.chizmiz.databinding.ActivityRegisterBinding
+import com.example.cheesemiz.R
+import com.example.cheesemiz.databinding.ActivityRegisterBinding
 import com.example.cheesemiz.ui.model.User
 import com.google.firebase.installations.FirebaseInstallations
 import com.google.firebase.messaging.ktx.messaging
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig
+import com.google.firebase.remoteconfig.ktx.remoteConfig
 import java.lang.Exception
 import java.nio.file.Files.delete
 import java.util.*
@@ -35,6 +37,7 @@ class RegisterActivity : AppCompatActivity() {
     private lateinit var binding : ActivityRegisterBinding
     private lateinit var progress: ProgressBar
     private lateinit var uri : Uri
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding= DataBindingUtil.setContentView(this, R.layout.activity_register)
@@ -128,7 +131,7 @@ class RegisterActivity : AppCompatActivity() {
                 try {
                     binding.profileSelect.setImageURI(it)
                     selectPhotoLabelHide()
-                    uri = it
+                    uri = it!!
                 }catch (e:Exception){
                     Toast.makeText(this@RegisterActivity,getString(R.string.toast_no_image_selected),Toast.LENGTH_SHORT).show()
                     selectPhotoLabelShow()

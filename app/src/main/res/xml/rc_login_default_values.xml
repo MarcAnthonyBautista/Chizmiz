@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- START xml_defaults -->
+<defaultsMap>
+    <entry>
+        <key>label_no_account</key>
+        <value>No account yet?</value>
+    </entry>
+    <entry>
+        <key>label_register</key>
+        <value>Register</value>
+    </entry>
+    <entry>
+        <key>label_sign_in</key>
+        <value>SIGN IN</value>
+    </entry>
+</defaultsMap>

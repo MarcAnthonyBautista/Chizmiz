@@ -14,41 +14,44 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DividerItemDecoration
+import com.example.cheesemiz.R
+import com.example.cheesemiz.RemoteUtil
+import com.example.cheesemiz.databinding.ActivityMainBinding
+import com.example.cheesemiz.ui.model.ChatMessage
+import com.example.cheesemiz.ui.model.User
+import com.example.cheesemiz.ui.view.LatestMessageRow
+import com.google.firebase.FirebaseApp
+import com.google.firebase.FirebaseOptions
+import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.*
+import com.google.firebase.database.BuildConfig
+import com.google.firebase.database.ChildEventListener
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
-import marc.firebase.chizmiz.R
-import com.example.cheesemiz.RemoteUtil
-import marc.firebase.chizmiz.databinding.ActivityMainBinding
-import com.example.cheesemiz.ui.model.ChatMessage
-import com.example.cheesemiz.ui.model.User
-import com.google.firebase.analytics.FirebaseAnalytics
-import com.google.firebase.analytics.ktx.analytics
-import com.google.firebase.analytics.ktx.logEvent
-import com.google.firebase.ktx.Firebase
-import marc.firebase.chizmiz.ui.view.LatestMessageRow
-import java.time.Instant
-import java.time.ZoneOffset
-import java.time.format.DateTimeFormatter
 
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding : ActivityMainBinding
     private lateinit var user_uid : String
     private lateinit var fireabseConfig : FirebaseRemoteConfig
-
+    private lateinit var firebaseAnalytics: FirebaseAnalytics
 
     companion object{
         var currentUser: User? = null
     }
     override fun onCreate(savedInstanceState: Bundle?) {
+      //  initFirebaseApp()
+
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
-
+        firebaseAnalytics = FirebaseAnalytics.getInstance(this)
         val auth = FirebaseAuth.getInstance()
         val uid = auth.uid
 
@@ -60,9 +63,12 @@ class MainActivity : AppCompatActivity() {
             fetchCurrentUser()
             listenForLatestMessages()
         }
+        val ss:String = intent.getStringExtra("data").toString()
+        Log.d ("FCM", "data message intent - $ss")
+            //do your stuff
 
 
-        updateChecker()
+        //updateChecker()
 
         binding.apply {
             recentMessageRecycler.adapter = adapter
@@ -77,11 +83,20 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-
-
-
-
     }
+
+    fun initFirebaseApp(){
+        val options = FirebaseOptions.Builder()
+            .setProjectId("chizmiz-be5ca")
+            .setApplicationId("1:849182651066:android:c8b9b53694bac6270a4883")
+            .setGcmSenderId("849182651066")
+            .build()
+        Log.d("initialize APP","here")
+        FirebaseApp.initializeApp(this, options, "default")
+
+        Log.d("initial project","current project: ${FirebaseApp.getInstance().options.projectId}")
+    }
+
     val adapter = GroupAdapter<GroupieViewHolder>()
 
     val latestMessageMap = HashMap<String, ChatMessage>()
@@ -135,7 +150,7 @@ class MainActivity : AppCompatActivity() {
                 //this is the original function here
 //                fetchOnlineUserProfile()
                 //Log the timestamp where the app is active  - this is not the original function here.
-                logTime(currentUser?.username.toString())
+                //logTime(currentUser?.username.toString())
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -176,8 +191,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun updateChecker(){
-        val map:HashMap<String,Int> = HashMap()
-        map.put(RemoteUtil.VERSION, BuildConfig.VERSION_CODE)
+        val map:HashMap<String,String> = HashMap()
+        map.put(RemoteUtil.VERSION, BuildConfig.VERSION_NAME)
 
         fireabseConfig = FirebaseRemoteConfig.getInstance()
         var configSettings = FirebaseRemoteConfigSettings.Builder()
@@ -189,7 +204,8 @@ class MainActivity : AppCompatActivity() {
         fireabseConfig.fetchAndActivate()
             .addOnCompleteListener{
                 if(it.isSuccessful){
-                    Log.d("myTag","remoteConfig: \n ${fireabseConfig.getString(RemoteUtil.TITLE)} \n ${fireabseConfig.getString(
+                    Log.d("TAGG", "Config params updated: ${it.result} - ${it.exception}")
+                    Log.d("TAGG","remoteConfig: \n ${fireabseConfig.getString(RemoteUtil.TITLE)} \n ${fireabseConfig.getString(
                         RemoteUtil.WHATSNEW)} \n ${fireabseConfig.getString(RemoteUtil.ISFORCE)} \n ${fireabseConfig.getString(
                         RemoteUtil.VERSION)}")
 
@@ -201,7 +217,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showDialog(title:String,body:String,version:Long,is_force:Boolean){
-        if(version<=BuildConfig.VERSION_CODE)return
+        if(version<=Integer.valueOf(BuildConfig.VERSION_NAME))return
 
         val mDialogView = LayoutInflater.from(this).inflate(R.layout.custom_dialog,null)
         val mBuilder = AlertDialog.Builder(this)
@@ -225,16 +241,26 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    private fun logTime(email: String){
-        //Analytics
+   /* override fun onResume(){
+        super.onResume()
         val firebaseAnalytics = Firebase.analytics
+        firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SCREEN_VIEW) {
+            param(FirebaseAnalytics.Param.SCREEN_NAME, "Screen_name: MainActivity")
+            param(FirebaseAnalytics.Param.SCREEN_CLASS, "Screen_class-MainActivity")
+        }
+    }*/
+
+    /*private fun logTime(email: String){
+        //Analytics
         firebaseAnalytics.logEvent("active_time") {
             param("appIsActive_timestamp", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSSSSS")
                 .withZone(ZoneOffset.UTC)
                 .format(Instant.now()))
             param("triggeredBy", email)
+            param("sample", FirebaseAnalytics.Param.ITEM_LIST_NAME)
 
         }
-    }
+    }*/
+
 
 }
